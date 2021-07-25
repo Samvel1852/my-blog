@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class PostContainer extends React.Component {
   constructor(props) {
@@ -12,10 +13,15 @@ class PostContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <b>There is no post on web-site.</b>
-        <h2>Log in and be our first story teller.</h2>
-      </div>
+      <Router>
+        <div>
+          <b>There is no post on web-site.</b>
+          <h2>
+            {" "}
+            <Link to="/login">Log in</Link> and be our first story teller.
+          </h2>
+        </div>
+      </Router>
     );
   }
 }
