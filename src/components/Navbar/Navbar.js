@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({ logged }) {
   const classes = useStyles();
 
   return (
@@ -44,7 +44,11 @@ export default function ButtonAppBar() {
           </Typography>
 
           <Link style={{ textDecoration: "none", color: "white" }} to="/login">
-            <Button color="inherit">Login</Button>
+            {logged ? (
+              <Button color="inherit">Log out</Button>
+            ) : (
+              <Button color="inherit">Log in</Button>
+            )}
           </Link>
         </Toolbar>
       </AppBar>

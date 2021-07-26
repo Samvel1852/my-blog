@@ -10,12 +10,17 @@ function App() {
     <Router>
       <Switch>
         <div className="App">
-          <ButtonAppBar />
           <Route exact path="/">
-            <PostContainer />
+            <ButtonAppBar logged={false} />
+            <PostContainer logged={false} />
           </Route>
           <Route path="/login">
+            <ButtonAppBar logged={false} />
             <LoginForm />
+          </Route>
+          <Route path="/logged">
+            <ButtonAppBar logged={true} />
+            <PostContainer logged={true} />
           </Route>
         </div>
       </Switch>
