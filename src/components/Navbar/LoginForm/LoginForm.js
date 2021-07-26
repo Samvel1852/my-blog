@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
+import PostCreation from "../PostCreation";
 
 export default class LoginForm extends React.Component {
   static id = localStorage.getItem("users")
@@ -95,6 +96,7 @@ export default class LoginForm extends React.Component {
             Log in
           </Button>
         </Link>
+        <PostCreation user={this.state.name} />
       </FormGroup>
     );
   }

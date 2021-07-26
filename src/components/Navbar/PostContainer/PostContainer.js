@@ -4,8 +4,8 @@ import PostCard from "../PostCard/PostCard";
 
 class PostContainer extends React.Component {
   constructor(props) {
-    console.log(props);
     super(props);
+    console.log(props);
     this.state = {
       posts: localStorage.getItem("posts")
         ? JSON.parse(localStorage.getItem("posts"))
@@ -57,6 +57,7 @@ class PostContainer extends React.Component {
                     style={{ margin: "5px" }}
                     title={post.title}
                     content={post.content}
+                    user={"user"}
                   />
                 </div>
               );

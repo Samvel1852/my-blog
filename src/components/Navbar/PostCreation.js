@@ -20,6 +20,7 @@ class PostCreation extends React.Component {
       title: "",
       content: "",
       posts: [],
+      user: this.props.user,
     };
   }
 
@@ -52,14 +53,9 @@ class PostCreation extends React.Component {
 
     posts.push(post);
 
-    this.setState(
-      {
-        posts,
-      },
-      () => {
-        console.log(posts);
-      }
-    );
+    this.setState({
+      posts,
+    });
 
     localStorage.setItem("posts", JSON.stringify(posts));
   };
@@ -91,8 +87,8 @@ class PostCreation extends React.Component {
           <Button onClick={this.sharePost} variant="contained" color="primary">
             Create
           </Button>
+          <PostContainer user={this.state.user} posts={this.state.posts} />
         </FormGroup>
-        <PostContainer posts={this.state.posts} />
       </div>
     );
   }
