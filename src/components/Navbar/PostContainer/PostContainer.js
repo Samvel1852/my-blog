@@ -20,7 +20,7 @@ class PostContainer extends React.Component {
         <b>There is no post on web-site.</b>
         <h2>
           {" "}
-          <Link to="/login">Create a post</Link> to share your story
+          <Link to="/create-post">Create a post</Link> to share your story
         </h2>
       </div>
     ) : (
@@ -28,7 +28,7 @@ class PostContainer extends React.Component {
         <b>There is no post on web-site.</b>
         <h2>
           {" "}
-          <Link to="/postcreation">Log in</Link> and be our first story teller.
+          <Link to="/login">Log in</Link> and be our first story teller.
         </h2>
       </div>
     );
