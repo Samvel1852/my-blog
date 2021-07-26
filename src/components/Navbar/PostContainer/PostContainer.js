@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import PostCard from "../PostCard/PostCard";
 
 class PostContainer extends React.Component {
   constructor(props) {
@@ -52,8 +53,11 @@ class PostContainer extends React.Component {
             {this.state.posts.map((post, index) => {
               return (
                 <div key={index}>
-                  <p>{post.title}</p>
-                  <p>{post.content}</p>
+                  <PostCard
+                    style={{ margin: "5px" }}
+                    title={post.title}
+                    content={post.content}
+                  />
                 </div>
               );
             })}
