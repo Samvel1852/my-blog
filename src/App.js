@@ -1,14 +1,25 @@
 // import { AppBar } from "@material-ui/core";
-import ButtonAppBar from "./Navbar/Navbar";
-import PostContainer from "./PostContainer/PostContainer";
+import ButtonAppBar from "./components/Navbar/Navbar";
+import PostContainer from "./components/Navbar/PostContainer/PostContainer";
 import "./App.css";
+import LoginForm from "./components/Navbar/LoginForm/LoginForm";
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <ButtonAppBar />
-      <PostContainer />
-    </div>
+    <Router>
+      <Switch>
+        <div className="App">
+          <ButtonAppBar />
+          <Route exact path="/">
+            <PostContainer />
+          </Route>
+          <Route path="/login">
+            <LoginForm />
+          </Route>
+        </div>
+      </Switch>
+    </Router>
   );
 }
 
