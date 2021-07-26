@@ -4,7 +4,7 @@ import PostContainer from "./components/Navbar/PostContainer/PostContainer";
 import "./App.css";
 import LoginForm from "./components/Navbar/LoginForm/LoginForm";
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
-import PostCreation from "./helpers/PostCreation";
+import PostCreation from "./components/Navbar/PostCreation";
 
 function App() {
   return (
