@@ -4,6 +4,7 @@ import PostContainer from "./components/Navbar/PostContainer/PostContainer";
 import "./App.css";
 import LoginForm from "./components/Navbar/LoginForm/LoginForm";
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import PostCreation from "./helpers/PostCreation";
 
 function App() {
   return (
@@ -21,6 +22,11 @@ function App() {
           <Route path="/logged">
             <ButtonAppBar logged={true} />
             <PostContainer logged={true} />
+          </Route>
+          <Route path="/create-post">
+            <ButtonAppBar logged={true} />
+            <PostCreation />
+            {/* <PostContainer logged={true} /> */}
           </Route>
         </div>
       </Switch>

@@ -38,7 +38,12 @@ export default function ButtonAppBar({ logged }) {
           <Link style={{ textDecoration: "none", color: "white" }} to="/">
             <Button color="inherit">Blog</Button>
           </Link>
-          <Button color="inherit">Create a Post</Button>
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            to="/create-post"
+          >
+            <Button color="inherit">Create a Post</Button>
+          </Link>
           <Typography variant="h6" className={classes.title}>
             News
           </Typography>
