@@ -5,11 +5,12 @@ import PostCard from "../PostCard/PostCard";
 class PostContainer extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    // console.log(props);
     this.state = {
       posts: localStorage.getItem("posts")
         ? JSON.parse(localStorage.getItem("posts"))
         : [],
+      currentUser: "",
     };
   }
 
@@ -17,6 +18,25 @@ class PostContainer extends React.Component {
   //   const posts = JSON.parse(localStorage.getItem("posts"));
   //   console.log(this.state.posts);
   // }
+
+  componentDidUpdate() {
+    return (
+      <div>
+        {this.state.posts.map((post, index) => {
+          return (
+            <div key={index}>
+              <PostCard
+                style={{ margin: "5px" }}
+                title={post.title}
+                content={post.content}
+                user={"user"}
+              />
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
 
   render() {
     const { logged } = this.props;

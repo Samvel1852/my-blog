@@ -12,8 +12,8 @@ function App() {
       <Switch>
         <div className="App">
           <Route exact path="/">
-            <ButtonAppBar logged={false} />
-            <PostContainer logged={false} />
+            <ButtonAppBar />
+            <PostContainer />
           </Route>
           <Route path="/login">
             <ButtonAppBar logged={false} />
@@ -25,7 +25,7 @@ function App() {
           </Route>
           <Route path="/create-post">
             <ButtonAppBar logged={true} />
-            <PostCreation />
+            <PostCreation logged={true} />
             {/* <PostContainer logged={true} /> */}
           </Route>
         </div>

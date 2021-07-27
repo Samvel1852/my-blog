@@ -9,53 +9,80 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
-import PostCreation from "../PostCreation";
 
 export default class LoginForm extends React.Component {
   static id = localStorage.getItem("users")
-    ? JSON.parse(localStorage.getItem("users")).length
-    : 0;
+    ? JSON.parse(localStorage.getItem("users")).length - 1
+    : 1;
 
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
+      users: [],
       name: "",
       password: "",
-      posts: props.posts,
+      // posts: props.posts,
     };
   }
 
   handleLoginMaker = () => {
-    if (localStorage.getItem("users")) {
-      console.log(JSON.parse(localStorage.getItem("users")));
-      const prevUsers = JSON.parse(localStorage.getItem("users"));
-      const newUsers = prevUsers;
-      newUsers.push({
+    let allUsers = JSON.parse(localStorage.getItem("users"))
+      ? JSON.parse(localStorage.getItem("users"))
+      : [];
+
+    let registeredUser = allUsers.find(
+      (user) =>
+        user.name === this.state.name && user.password === this.state.password
+    );
+
+    console.log(registeredUser);
+
+    if (registeredUser) {
+      let currentUserIdArr = allUsers.map((user, index) => {
+        if (Number(user.id) === Number(registeredUser.id)) {
+          return user.id;
+        }
+      });
+      let currentUserId = currentUserIdArr[0];
+
+      let prevUsers = JSON.parse(localStorage.getItem("users"));
+      prevUsers = prevUsers.map((user) => {
+        if (user.id === currentUserId) {
+          return Object.assign(user, { isLogged: true });
+        } else {
+          return Object.assign(user, { isLogged: false });
+        }
+      });
+
+      this.setState({
+        users: prevUsers,
+      });
+      localStorage.setItem("users", JSON.stringify(prevUsers));
+    } else {
+      let currentUser = {
         name: this.state.name,
         password: this.state.password,
         id: LoginForm.id++,
         isLogged: true,
-      });
+      };
 
-      localStorage.setItem("users", JSON.stringify(newUsers));
-    } else {
-      localStorage.setItem(
-        "users",
-        JSON.stringify([
-          {
-            name: this.state.name,
-            password: this.state.password,
-            id: LoginForm.id++,
-            isLogged: true,
-          },
-        ])
-      );
+      if (localStorage.getItem("users")) {
+        let prevUsers = JSON.parse(localStorage.getItem("users"));
+        prevUsers = prevUsers.map((user) =>
+          Object.assign(user, { isLogged: false })
+        );
+        let newUsers = [...prevUsers, currentUser];
+        this.setState({
+          users: newUsers,
+        });
+        localStorage.setItem("users", JSON.stringify(newUsers));
+      } else {
+        localStorage.setItem("users", JSON.stringify([currentUser]));
+        this.setState({
+          users: [currentUser],
+        });
+      }
     }
-    // localStorage.setItem("name", this.state.name);
-    // localStorage.setItem("password", this.state.password);
-    // localStorage.setItem("id", LoginForm.id++);
-    // localStorage.setItem("isLogged", true);
   };
 
   handleNameValue = (e) => {
@@ -96,7 +123,6 @@ export default class LoginForm extends React.Component {
             Log in
           </Button>
         </Link>
-        <PostCreation user={this.state.name} />
       </FormGroup>
     );
   }

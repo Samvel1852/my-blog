@@ -44,14 +44,15 @@ class PostCreation extends React.Component {
   };
 
   sharePost = () => {
-    const posts = this.state.posts ? this.state.posts : [];
+    let posts = this.state.posts ? this.state.posts : [];
 
     const post = {
       title: this.state.title,
       content: this.state.content,
     };
 
-    posts.push(post);
+    // posts.push(post);
+    posts = [...posts, post];
 
     this.setState({
       posts,
