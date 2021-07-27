@@ -21,7 +21,7 @@ class PostContainer extends React.Component {
     if (localStorage.getItem("users")) {
       loggedUser = JSON.parse(localStorage.getItem("users")).filter(
         (user) => user.isLogged
-      )
+      ).length
         ? JSON.parse(localStorage.getItem("users")).filter(
             (user) => user.isLogged
           )
