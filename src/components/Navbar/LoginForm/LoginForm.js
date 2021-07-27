@@ -43,7 +43,8 @@ export default class LoginForm extends React.Component {
           return user.id;
         }
       });
-      let currentUserId = currentUserIdArr[0];
+
+      let currentUserId = currentUserIdArr.filter((id) => id)[0];
 
       let prevUsers = JSON.parse(localStorage.getItem("users"));
       prevUsers = prevUsers.map((user) => {

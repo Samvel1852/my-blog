@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import MakeAllUsersLoggedOut from "../../helpers/MakeAllUsersLoggedOut";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,8 +50,12 @@ export default function ButtonAppBar({ logged }) {
           </Typography>
 
           <Link style={{ textDecoration: "none", color: "white" }} to="/login">
-            {logged ? (
-              <Button color="inherit">Log out</Button>
+            {JSON.parse(localStorage.getItem("users")).some(
+              (user) => user.isLogged
+            ) ? (
+              <Button onClick={MakeAllUsersLoggedOut} color="inherit">
+                Log out
+              </Button>
             ) : (
               <Button color="inherit">Log in</Button>
             )}
