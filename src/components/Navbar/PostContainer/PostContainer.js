@@ -17,13 +17,16 @@ class PostContainer extends React.Component {
   }
 
   handlePostRemove = (postId, authorId) => {
-    let loggedUser = JSON.parse(localStorage.getItem("users")).filter(
-      (user) => user.isLogged
-    )
-      ? JSON.parse(localStorage.getItem("users")).filter(
-          (user) => user.isLogged
-        )
-      : [{ id: -6 }];
+    let loggedUser = [{ id: -6 }];
+    if (localStorage.getItem("users")) {
+      loggedUser = JSON.parse(localStorage.getItem("users")).filter(
+        (user) => user.isLogged
+      )
+        ? JSON.parse(localStorage.getItem("users")).filter(
+            (user) => user.isLogged
+          )
+        : [{ id: -6 }];
+    }
 
     let postsAfterDelete = [...this.state.posts];
     if (loggedUser[0].id === authorId) {
