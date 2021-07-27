@@ -7,13 +7,17 @@ import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import PostCreation from "./components/Navbar/PostCreation";
 
 function App() {
+  let isLoggedUser = JSON.parse(localStorage.getItem("users")).some(
+    (user) => user.isLogged
+  );
+
   return (
     <Router>
       <Switch>
         <div className="App">
           <Route exact path="/">
             <ButtonAppBar />
-            <PostContainer />
+            <PostContainer logged={isLoggedUser} />
           </Route>
           <Route path="/login">
             <ButtonAppBar logged={false} />
@@ -24,8 +28,8 @@ function App() {
             <PostContainer logged={true} />
           </Route>
           <Route path="/create-post">
-            <ButtonAppBar logged={true} />
-            <PostCreation logged={true} />
+            <ButtonAppBar logged={isLoggedUser} />
+            <PostCreation logged={isLoggedUser} />
             {/* <PostContainer logged={true} /> */}
           </Route>
         </div>

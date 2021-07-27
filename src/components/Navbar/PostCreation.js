@@ -13,6 +13,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PostContainer from "./PostContainer/PostContainer";
 
+let isLoggedUser = JSON.parse(localStorage.getItem("users")).some(
+  (user) => user.isLogged
+);
 class PostCreation extends React.Component {
   constructor(props) {
     super(props);
@@ -88,7 +91,11 @@ class PostCreation extends React.Component {
           <Button onClick={this.sharePost} variant="contained" color="primary">
             Create
           </Button>
-          <PostContainer user={this.state.user} posts={this.state.posts} />
+          <PostContainer
+            logged={isLoggedUser}
+            user={this.state.user}
+            posts={this.state.posts}
+          />
         </FormGroup>
       </div>
     );
