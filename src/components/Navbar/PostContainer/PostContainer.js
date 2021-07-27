@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import PostCard from "../PostCard/PostCard";
 
-let isLoggedUser = JSON.parse(localStorage.getItem("users")).some(
-  (user) => user.isLogged
-);
+let isLoggedUser = localStorage.getItem("users")
+  ? JSON.parse(localStorage.getItem("users")).some((user) => user.isLogged)
+  : false;
 class PostContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +20,14 @@ class PostContainer extends React.Component {
     let deleteIndex = this.state.posts.findIndex(
       (post) => post.postId === postId && post.authorId === authorId
     );
-    console.log(deleteIndex);
+
+    let postsAfterDelete = [...this.state.posts];
+    postsAfterDelete.splice(deleteIndex, 1);
+
+    this.setState({
+      posts: postsAfterDelete,
+    });
+    localStorage.setItem("posts", JSON.stringify(postsAfterDelete));
   };
 
   render() {

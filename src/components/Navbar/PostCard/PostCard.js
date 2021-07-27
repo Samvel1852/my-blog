@@ -43,7 +43,11 @@ export default function ImgMediaCard({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button onClick={handlePostRemove()} size="small" color="primary">
+        <Button
+          onClick={(postId, authorId) => handlePostRemove(postId, authorId)}
+          size="small"
+          color="primary"
+        >
           Remove
         </Button>
         <Button size="small" color="primary">

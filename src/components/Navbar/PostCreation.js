@@ -13,9 +13,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PostContainer from "./PostContainer/PostContainer";
 
-let isLoggedUser = JSON.parse(localStorage.getItem("users")).some(
-  (user) => user.isLogged
-);
+let isLoggedUser = localStorage.getItem("users")
+  ? JSON.parse(localStorage.getItem("users")).some((user) => user.isLogged)
+  : false;
 class PostCreation extends React.Component {
   static postId = localStorage.getItem("posts")
     ? JSON.parse(localStorage.getItem("posts")).length + 1

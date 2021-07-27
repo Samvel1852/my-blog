@@ -50,9 +50,11 @@ export default function ButtonAppBar({ logged }) {
           </Typography>
 
           <Link style={{ textDecoration: "none", color: "white" }} to="/login">
-            {JSON.parse(localStorage.getItem("users")).some(
-              (user) => user.isLogged
-            ) ? (
+            {!localStorage.getItem("users") ? (
+              <Button color="inherit">Log in</Button>
+            ) : JSON.parse(localStorage.getItem("users")).some(
+                (user) => user.isLogged
+              ) ? (
               <Button onClick={MakeAllUsersLoggedOut} color="inherit">
                 Log out
               </Button>

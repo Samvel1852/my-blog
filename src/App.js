@@ -7,9 +7,9 @@ import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import PostCreation from "./components/Navbar/PostCreation";
 
 function App() {
-  let isLoggedUser = JSON.parse(localStorage.getItem("users")).some(
-    (user) => user.isLogged
-  );
+  let isLoggedUser = localStorage.getItem("users")
+    ? JSON.parse(localStorage.getItem("users")).some((user) => user.isLogged)
+    : false;
 
   return (
     <Router>
