@@ -17,13 +17,18 @@ class PostContainer extends React.Component {
   }
 
   handlePostRemove = (postId, authorId) => {
-    let deleteIndex = this.state.posts.findIndex(
-      (post) => post.postId === postId && post.authorId === authorId
+    let loggedUser = JSON.parse(localStorage.getItem("users")).filter(
+      (user) => user.isLogged
     );
 
     let postsAfterDelete = [...this.state.posts];
-    postsAfterDelete.splice(deleteIndex, 1);
+    if (loggedUser[0].id === authorId) {
+      let deleteIndex = this.state.posts.findIndex(
+        (post) => post.postId === postId && post.authorId === authorId
+      );
 
+      postsAfterDelete.splice(deleteIndex, 1);
+    }
     this.setState({
       posts: postsAfterDelete,
     });
