@@ -63,6 +63,7 @@ class PostCreation extends React.Component {
       author: currentUser.name,
       authorId: currentUser.id,
       postId: PostCreation.postId++,
+      date: new Date().toLocaleDateString(),
     };
 
     // posts.push(post);
@@ -106,6 +107,7 @@ class PostCreation extends React.Component {
             logged={isLoggedUser}
             user={this.state.user}
             posts={this.state.posts}
+            date={this.state.date}
           />
         </FormGroup>
       </div>

@@ -21,6 +21,7 @@ export default function ImgMediaCard({
   authorId,
   postId,
   handlePostRemove,
+  date,
 }) {
   const classes = useStyles();
 
@@ -32,7 +33,7 @@ export default function ImgMediaCard({
             {authorId}
           </Typography>
           <Typography gutterBottom variant="h6" component="h2">
-            {`Created by ${author} at ${new Date()}`}
+            {`Created by ${author} at ${date}`}
           </Typography>
           <Typography gutterBottom variant="h2" component="h2">
             {`${title}`}

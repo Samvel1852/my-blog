@@ -79,6 +79,7 @@ class PostContainer extends React.Component {
                     handlePostRemove={(postId, authorId) =>
                       this.handlePostRemove(post.postId, post.authorId)
                     }
+                    date={post.date}
                   />
                 </div>
               );
