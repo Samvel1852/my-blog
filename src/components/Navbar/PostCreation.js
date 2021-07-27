@@ -17,6 +17,10 @@ let isLoggedUser = JSON.parse(localStorage.getItem("users")).some(
   (user) => user.isLogged
 );
 class PostCreation extends React.Component {
+  static postId = localStorage.getItem("posts")
+    ? JSON.parse(localStorage.getItem("posts")).length + 1
+    : 1;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -49,9 +53,16 @@ class PostCreation extends React.Component {
   sharePost = () => {
     let posts = this.state.posts ? this.state.posts : [];
 
+    let currentUser = JSON.parse(localStorage.getItem("users")).filter(
+      (user) => user.isLogged
+    )[0];
+
     const post = {
       title: this.state.title,
       content: this.state.content,
+      author: currentUser.name,
+      authorId: currentUser.id,
+      postId: PostCreation.postId++,
     };
 
     // posts.push(post);

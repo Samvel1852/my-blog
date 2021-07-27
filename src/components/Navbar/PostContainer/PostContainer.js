@@ -2,10 +2,12 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import PostCard from "../PostCard/PostCard";
 
+let isLoggedUser = JSON.parse(localStorage.getItem("users")).some(
+  (user) => user.isLogged
+);
 class PostContainer extends React.Component {
   constructor(props) {
     super(props);
-    // console.log(props);
     this.state = {
       posts: localStorage.getItem("posts")
         ? JSON.parse(localStorage.getItem("posts"))
@@ -14,35 +16,16 @@ class PostContainer extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   const posts = JSON.parse(localStorage.getItem("posts"));
-  //   console.log(this.state.posts);
-  // }
-
-  componentDidUpdate() {
-    return (
-      <div>
-        {this.state.posts.map((post, index) => {
-          return (
-            <div key={index}>
-              <PostCard
-                style={{ margin: "5px" }}
-                title={post.title}
-                content={post.content}
-                user={"user"}
-              />
-            </div>
-          );
-        })}
-      </div>
+  handlePostRemove = (postId, authorId) => {
+    let deleteIndex = this.state.posts.findIndex(
+      (post) => post.postId === postId && post.authorId === authorId
     );
-  }
+    console.log(deleteIndex);
+  };
 
   render() {
-    const { logged } = this.props;
-    // console.log(this.props);
     if (this.state.posts.length === 0) {
-      return logged ? (
+      return isLoggedUser ? (
         <div>
           <b>There is no post on web-site.</b>
           <h2>
@@ -61,6 +44,7 @@ class PostContainer extends React.Component {
               <div key={index}>
                 <p>{post.title}</p>
                 <p>{post.content}</p>
+                <p>{post.author}</p>
               </div>
             );
           })}
@@ -77,7 +61,12 @@ class PostContainer extends React.Component {
                     style={{ margin: "5px" }}
                     title={post.title}
                     content={post.content}
-                    user={"user"}
+                    author={post.author}
+                    authorId={post.authorId}
+                    postId={post.postId}
+                    handlePostRemove={(postId, authorId) =>
+                      this.handlePostRemove(post.postId, post.authorId)
+                    }
                   />
                 </div>
               );

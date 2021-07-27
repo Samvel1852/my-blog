@@ -30,7 +30,7 @@ function App() {
           <Route path="/create-post">
             <ButtonAppBar logged={isLoggedUser} />
             <PostCreation logged={isLoggedUser} />
-            {/* <PostContainer logged={true} /> */}
+            {/* <PostContainer logged={isLoggedUser} /> */}
           </Route>
         </div>
       </Switch>

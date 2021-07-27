@@ -14,24 +14,37 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImgMediaCard({ title, content }) {
+export default function ImgMediaCard({
+  title,
+  content,
+  author,
+  authorId,
+  postId,
+  handlePostRemove,
+}) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card key={postId} className={classes.root}>
       <CardActionArea>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {title}
+          <Typography variant="p" color="textSecondary" component="p">
+            {authorId}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography gutterBottom variant="h6" component="h2">
+            {`Created by ${author} at ${new Date()}`}
+          </Typography>
+          <Typography gutterBottom variant="h2" component="h2">
+            {`${title}`}
+          </Typography>
+          <Typography variant="p" color="textPrimary" component="p">
             {content}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
+        <Button onClick={handlePostRemove()} size="small" color="primary">
+          Remove
         </Button>
         <Button size="small" color="primary">
           Learn More
