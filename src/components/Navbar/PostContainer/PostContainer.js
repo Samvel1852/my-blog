@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { getLocalStorage } from "../../../helpers/localStorage";
 import PostCard from "../PostCard/PostCard";
 
 let isLoggedUser = localStorage.getItem("users")
@@ -14,6 +15,24 @@ class PostContainer extends React.Component {
         : [],
       currentUser: "",
     };
+  }
+
+  // componentDidMount() {
+  //   const posts = getLocalStorage("posts")
+  //   // const posts = this.props.posts;
+  //   this.setState({
+  //     posts,
+  //   });
+  // }
+
+  componentDidUpdate() {
+    if (getLocalStorage("posts")) {
+      if (getLocalStorage("posts").length !== this.state.posts.length) {
+        this.setState({
+          posts: JSON.parse(localStorage.getItem("posts")),
+        });
+      }
+    }
   }
 
   handlePostRemove = (postId, authorId) => {

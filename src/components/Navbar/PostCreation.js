@@ -32,9 +32,9 @@ class PostCreation extends React.Component {
   }
 
   componentDidMount() {
-    const posts = JSON.parse(localStorage.getItem("posts"));
+    const posts = JSON.parse(localStorage.getItem("posts")) || [];
     this.setState({
-      posts,
+      posts: [...posts],
     });
   }
 
